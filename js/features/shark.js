@@ -4,8 +4,8 @@ const SHARK = {
 
     bonuses: {
         fish: [()=>player.shark_level.gte(1),l=>expPow(Decimal.pow(tmp.shark_base,l).mul(l),getCRBoost(5)),E(0)],
-        prestige: [()=>player.shark_level.gte(20),l=>Decimal.add(1.25,simpleResearchEffect('p1',0)).pow(l.sub(19)),E(1)],
-        core: [()=>player.shark_level.gte(300),l=>Decimal.add(1.01,getCRBoost(4,0)).pow(l.sub(299)).overflow('ee3',0.5),E(1)],
+        prestige: [()=>player.shark_level.gte(10),l=>Decimal.add(1.45,simpleResearchEffect('p1',0)).pow(l.sub(19)),E(1)],
+        core: [()=>player.shark_level.gte(225),l=>Decimal.add(1.21,getCRBoost(4,0)).pow(l.sub(299)).overflow('ee3',0.5),E(1)],
         remnants: [()=>player.shark_level.gte(1)&&hasSMilestone(0),l=>{
             let x = l
             if (hasResearch('dm4')) x = x.mul(expPow(l,0.25).pow_base(2));
@@ -67,9 +67,9 @@ const SU_TABS = {
 
 const SHARK_UPGRADES = {
     s1: {
-        req: ()=>player.shark_level.gte(3),
+        req: ()=>player.shark_level.gte(2),
 
-        cost: l => Decimal.pow(1.1,l).mul(100),
+        cost: l => Decimal.pow(1.05,l).mul(100),
         bulk: x => x.div(100).log(1.1).floor().add(1),
 
         curr: "fish",
@@ -78,9 +78,9 @@ const SHARK_UPGRADES = {
         effDesc: x=>formatMult(x),
     },
     s2: {
-        req: ()=>player.shark_level.gte(7),
+        req: ()=>player.shark_level.gte(5),
 
-        cost: l => Decimal.pow(10,l.pow(1.25)).mul(1e6),
+        cost: l => Decimal.pow(10,l.pow(1.15)).mul(1e6),
         bulk: x => x.div(1e6).log(10).root(1.25).floor().add(1),
 
         curr: "fish",
@@ -89,10 +89,10 @@ const SHARK_UPGRADES = {
         effDesc: x=>"+"+format(x,0),
     },
     s3: {
-        req: ()=>player.shark_level.gte(15),
+        req: ()=>player.shark_level.gte(9),
 
         cost: l => {
-            let x = Decimal.pow(1e3,l.scaleAll("su_s3").pow(1.25)).mul(1e21)
+            let x = Decimal.pow(1e3,l.scaleAll("su_s3").pow(1.18)).mul(1e21)
             if (hasResearch('c3')) x = x.root(coreReactorEffect(3))
             return x
         },
