@@ -17,12 +17,12 @@ const RESEARCH = {
         ],
     },
     p3: {
-        max: 5,
+        max: 7,
         noBuyMax: true,
         unl: ()=>true,
         require: [
             // l=>Decimal.pow(100,l.pow(2.5)).mul(1e13)
-            ['prestige',false,l=>[1e13,1e15,1e24,1e30,1e48][l.round().toNumber()]??EINF,x=>0],
+            ['prestige',false,l=>[1e13,1e15,1e24,1e30,1e48,1e64,1e88][l.round().toNumber()]??EINF,x=>0],
         ],
         onBuy() {
             if (player.singularity.best_bh.gte(5)) return;
